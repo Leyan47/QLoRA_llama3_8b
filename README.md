@@ -61,3 +61,4 @@ trainer.train(resume_from_checkpoint=True)
 - 擴充資料集：持續收集更多樣化、edge case 來提升模型的泛化能力。
 - 模型評估：建立一個獨立的測試集，並編寫評估腳本，以量化指標（如精確率、召回率、F1 分數）來評估模型的輸出品質。
 - 超參數搜索：使用 Optuna 或 Ray Tune 等工具，系統性地尋找最佳的學習率、LoRA rank 等超參數。
+- 訓練過程加入 NEFTune 以提升模型泛化能力
