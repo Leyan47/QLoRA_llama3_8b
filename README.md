@@ -24,8 +24,21 @@
 **開發環境:** Python 3.9+, CUDA
 
 #### 使用方法 (Usage)
-待補
+- 在window的環境下直接下載 bitsandbytes會報錯，請找到適配自己cuda的下載源(當下是下載了bitsandbytes-0.41.2.post2-py3-none-win_amd64.whl)
+0. 準備訓練資料：包含正面範例、負面範例和邊緣案例，這樣模型才能學會區分其中的差別。
 
+1. 模型訓練
+腳本: train_llama3.py
+功能: 讀取訓練資料，對 Llama-3 8B 模型進行 QLoRA 微調，並將訓練好的 LoRA 適配器權重保存下來。
+執行 `train.py` 訓練完成後，LoRA 適配器會被保存在 ./llama3-8b-competitor-final 資料夾中。訓練過程中的檢查點會保存在 ./llama3-8b-competitor-finetune。
+
+2. 接續斷點訓練
+如果您需要中斷訓練後繼續，可以修改 train.py 腳本中的 trainer.train()：
+trainer.train(resume_from_checkpoint=True)
+
+3. 批次預測
+腳本: predict_batch.py
+功能: 讀取一個 CSV 或 Excel 檔案，對其中的 text 欄位進行逐行預測，並將結果（同業競爭, 同業名稱, 原文）附加到新的欄位後，保存為一個新的 CSV 檔案。
 
 #### 專案結構 (Project Structure)
 
